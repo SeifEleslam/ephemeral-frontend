@@ -1,17 +1,17 @@
 "use client";
 import Head from "next/head";
 import { useState } from "react";
+import useSignUp from "../services/api/auth";
 
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { signUp, isLoading, error } = useSignUp();
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-
-    // Implement form submission logic here (e.g., send data to server)
-
+    signUp({ data: { username: name, email, password } });
     setName("");
     setEmail("");
     setPassword("");
