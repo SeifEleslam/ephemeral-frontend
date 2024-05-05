@@ -3,22 +3,17 @@ import React from "react";
 import Head from "next/head";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { User, useSignIn } from "../services/api/auth";
 
 const Signin = () => {
-  const router = useRouter();
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-
-  const onSubmit = async (data: any) => {
-    // Implement form submission logic here (e.g., send data to server)
-    // Check user credentials and handle successful/failed login
-    console.log(data);
-    alert("Form Submitted!"); // Replace with actual logic
-    // Optionally redirect to a different page after successful login
-    router.push("/"); // Redirect to homepage
+  const { signIn, isLoading, error } = useSignIn();
+  const onSubmit = async (data: Omit<User, "password">) => {
+    signIn({ data });
   };
 
   return (
@@ -65,7 +60,7 @@ const Signin = () => {
               id="password"
               {...register("password", {
                 required: "Password is required",
-                minLength: 8,
+                minLength: 6,
               })}
               className={`rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 ${
                 errors.password ? "border-red-500" : ""

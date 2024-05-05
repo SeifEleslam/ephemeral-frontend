@@ -1,7 +1,7 @@
 "use client";
 import Head from "next/head";
 import { useState } from "react";
-import useSignUp from "../services/api/auth";
+import { useSignUp } from "../services/api/auth";
 
 const Signup = () => {
   const [name, setName] = useState("");

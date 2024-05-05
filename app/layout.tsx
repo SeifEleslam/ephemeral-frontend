@@ -14,7 +14,6 @@ const inter = Inter({ subsets: ["latin"] });
 // };
 const queryClient = new QueryClient();
 axios.defaults.baseURL = process.env.BASE_URL;
-console.log(process.env.BASE_URL);
 
 export default function RootLayout({
   children,
