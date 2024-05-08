@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { store } from "./services/store/store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import axios from "axios";
+import Header from "./components/ui/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +25,14 @@ export default function RootLayout({
     <html lang="en">
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          <body className={inter.className}>{children}</body>
+          <body
+            className={`font-inter antialiased bg-white text-gray-900 tracking-tight`}
+          >
+            <div className="flex flex-col min-h-screen overflow-hidden supports-[overflow:clip]:overflow-clip">
+              <Header />
+              {children}
+            </div>
+          </body>{" "}
         </QueryClientProvider>
       </Provider>
     </html>
