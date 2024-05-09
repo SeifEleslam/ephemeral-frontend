@@ -12,7 +12,7 @@ const Signin = () => {
     handleSubmit,
   } = useForm();
   const { signIn, isLoading, error } = useSignIn();
-  const onSubmit = async (data: Omit<User, "password">) => {
+  const onSubmit = async (data: any) => {
     signIn({ data });
   };
 
